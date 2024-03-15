@@ -17,8 +17,8 @@ class file_getter:
 		# define vendor folders
 		self.vendor_folder_ids = { # fill out later with box folder IDs for vendors
 			'Happy Finish': 75985820687,
-			'SGK': 155228682132,
-			'ICS': 205190710317
+			#'SGK': 155228682132,
+			#'ICS': 205190710317
 		}
 		# define known folder exclusions
 		self.set_vendor_exculsions()
@@ -52,8 +52,9 @@ class file_getter:
 		# upload the files from the match sets by downloading the file id and posting to the webnative path
 		self.successful_uploads = []
 		for match in self.matches:
-			if self.box.download_files(match['id'],match['path']) != None: ## update to include webnative path i.e. self.box.download_files(match['id'],web_native_path)
+			if self.box.download_files(match['id'],match['path']) != None: 
 				self.successful_uploads.append(match['record_id'])
+
 
 	def match_files(self) -> None:
 		# match up files on the gx_files and vendor_files variables and return a tuple of (box_file_id, wips_path)
@@ -106,7 +107,7 @@ class file_getter:
 						'processed_path': file['fieldData']['ImagePath'],
 						'wips_path': file['fieldData']['WIPS_PATH'],
 						'final_path': file['fieldData']['FINAL_PATH'],
-						'record_id': file['fieldData']['EntryID']
+						'record_id': file['recordId']
 					}
 				)
 		

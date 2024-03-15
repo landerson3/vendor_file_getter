@@ -16,9 +16,9 @@ class file_getter:
 		self.box = box_api()
 		# define vendor folders
 		self.vendor_folder_ids = { # fill out later with box folder IDs for vendors
-			'Happy Finish' : 75985820687,
-			# 'SGK': 155228682132,
-			# 'ICS': 205190710317
+			'Happy Finish': 75985820687,
+			'SGK': 155228682132,
+			'ICS': 205190710317
 		}
 		# define known folder exclusions
 		self.set_vendor_exculsions()
@@ -32,7 +32,7 @@ class file_getter:
 		self.match_files() 
 		# upload assets to webnative
 		self.upload_wips()
-		# self.update_gx()
+		self.update_gx()
 		self.move_box_files()
 
 	def move_box_files(self):
@@ -42,9 +42,7 @@ class file_getter:
 					pulled_folder = self.pulled_folders[match['vendor']][0]
 					file_id = match['id']
 					self.box.move_file(file_id, pulled_folder)
-					break
-
-
+					
 	def update_gx(self):
 		# update status' to "approved" in GX
 		for upload in self.successful_uploads:
@@ -54,10 +52,8 @@ class file_getter:
 		# upload the files from the match sets by downloading the file id and posting to the webnative path
 		self.successful_uploads = []
 		for match in self.matches:
-			if self.box.download_files(match['id']) != None: ## update to include webnative path i.e. self.box.download_files(match['id'],web_native_path)
+			if self.box.download_files(match['id'],match['path']) != None: ## update to include webnative path i.e. self.box.download_files(match['id'],web_native_path)
 				self.successful_uploads.append(match['record_id'])
-				break
-		# pass
 
 	def match_files(self) -> None:
 		# match up files on the gx_files and vendor_files variables and return a tuple of (box_file_id, wips_path)

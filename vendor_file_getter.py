@@ -17,8 +17,8 @@ class file_getter:
 		# define vendor folders
 		self.vendor_folder_ids = { # fill out later with box folder IDs for vendors
 			'Happy Finish': 75985820687,
-			#'SGK': 155228682132,
-			#'ICS': 205190710317
+			'SGK': 155228682132,
+			'ICS': 205190710317
 		}
 		# define known folder exclusions
 		self.set_vendor_exculsions()

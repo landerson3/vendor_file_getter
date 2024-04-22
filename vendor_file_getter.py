@@ -134,8 +134,10 @@ class file_getter:
 		# set the self.vendor_files object to hold the files by each vendor
 		self.vendor_files = {}
 		for name,id in self.vendor_folder_ids.items():
-			files = self.box.get_folder_items(id, exclusions = self.folder_exlusions[name]) 
+			_files = self.box.get_folder_items(id, exclusions = self.folder_exlusions[name]) 
+			# remove anything that is not a psb
+			files = [file for file in _files if ".psb" in file['name']]
 			if name not in self.vendor_files: self.vendor_files[name] = files
-			self.vendor_files[name]
+			# self.vendor_files[name]
 
 fg = file_getter()

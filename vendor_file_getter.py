@@ -118,7 +118,7 @@ class file_getter:
 		self.pulled_folders = {}
 		for name, id in self.vendor_folder_ids.items():
 			if name not in self.folder_exlusions:
-				self.folder_exlusions[name] = []
+				self.folder_exlusions[name] = [] #What is the logic here?
 				self.pulled_folders[name] = []
 			items = self.box.get_folder_items(id, include_subfolders = False)
 			for item in items:
